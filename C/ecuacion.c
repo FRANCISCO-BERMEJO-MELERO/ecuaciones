@@ -6,9 +6,10 @@
 void calcular_ecuacion(int min, int max, int opcion);
 void saludo();
 void menu();
+int comprobar_numero(int *num, int min_valido);
 
 int main(){
-    int numerox, numeroy,opcion;
+    int opcion;
     bool salida = false;
     int min = -100, max = 100;
     while (!salida)
@@ -17,7 +18,13 @@ int main(){
         scanf("%d", &opcion);
         switch (opcion)
         {
-        case 1 || 2 || 3 :
+        case 1:
+        calcular_ecuacion(min, max, opcion);
+        break;
+        case 2:
+        calcular_ecuacion(min, max, opcion);
+        break;
+        case 3:
         calcular_ecuacion(min, max, opcion);
         break;
         default:
@@ -60,10 +67,10 @@ void calcular_ecuacion (int min, int max, int opcion) {
         break;
     case 2:
         printf("introduce un numero distinto para a 0\n");
-        scanf("%d",&num1);
+        comprobar_numero(&num, 1);
         srand(time(0));
         num = rand() % (max - min + 1) + min;
-        
+        num1 = rand() % (max - min + 1) + min;
         calculo = num / num1;
 
         printf("Indica el resultado de la ecuacion  %dx = %d ", num1, num);
@@ -84,6 +91,9 @@ void calcular_ecuacion (int min, int max, int opcion) {
         scanf("%d",&num2);
         srand(time(0));
         
+        num = rand() % (max - min + 1) + min;
+        num1 = rand() % (max - min + 1) + min;
+        num2 = rand() % (max - min + 1) + min;
         num3 = rand() % (max - min + 1) + min;
         num4 = rand() % (max - min + 1) + min;
         
@@ -129,3 +139,14 @@ void menu(){
 }
 
 
+int comprobar_numero(int *num, int min_valido){
+    printf("Introduce un dato\n");
+    do{
+        scanf("%d", num);
+        if(*num == min_valido){
+            printf("El valor %d debe de ser distinto de %d. Introduce uno nuevo: \n", *num, min_valido);
+        }else{
+            printf("DATO CORRECTAMENTE INTRODUCIDO\n");
+        }
+    }while(*num==min_valido);
+}
